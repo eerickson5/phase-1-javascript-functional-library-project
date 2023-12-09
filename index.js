@@ -1,8 +1,9 @@
+function convertIfNeccessary(collection){
+    return Array.isArray(collection) ? collection : Object.values(collection);
+}
+
 function myEach(collection, callback) {
-    let convertedCollection = collection
-    if(!Array.isArray(collection)){
-        convertedCollection = Object.values(collection);
-    }
+    let convertedCollection = convertIfNeccessary(collection);
     
     let i = 0;
     while(i < convertedCollection.length){
@@ -14,11 +15,7 @@ function myEach(collection, callback) {
 }
 
 function myMap(collection, callback) {
-    let convertedCollection = collection
-    if(!Array.isArray(collection)){
-        convertedCollection = Object.values(collection);
-    }
-
+    let convertedCollection = convertIfNeccessary(collection);
 
     const modifiedCollection = [];
     let i = 0;
@@ -30,6 +27,24 @@ function myMap(collection, callback) {
     return modifiedCollection;
 }
 
+
 function myReduce(collection, callback, acc){
-    
+    let convertedCollection = convertIfNeccessary(collection);
+
+    let i = 0;
+    if(acc === undefined){
+        acc = convertedCollection[0];
+        i = 1;
+    }
+
+    while(i < convertedCollection.length){
+        acc = callback(acc, convertedCollection[i], convertedCollection);
+        i ++;
+    }
+
+    return acc;
+}
+
+function myFind(collection, predicate) {
+
 }
