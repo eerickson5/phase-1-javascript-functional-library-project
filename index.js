@@ -71,3 +71,41 @@ function myFilter(collection, predicate) {
     }
     return returnArray;
 }
+
+function mySize(collection) {
+    const convertedCollection = convertIfNeccessary(collection);
+
+    let i = 0;
+    while(convertedCollection[i] != undefined){
+        i ++;
+    }
+    return i;
+}
+
+function myFirst(array, n = 1) {
+    if (n === 1){
+        return array[0];
+    }
+
+    let i = 0;
+    let returnArray = []
+    while(i < n && array[i] != undefined){
+        returnArray.push(array[i])
+        i++;
+    }
+    return returnArray;
+}
+
+function myLast(array, n = 1){
+    if (n === 1){
+        return array[array.length - 1];
+    }
+
+    let i = array.length - n;
+    let returnArray = []
+    while(i < array.length && array[i] != undefined){
+        returnArray.push(array[i])
+        i++;
+    }
+    return returnArray;
+}
