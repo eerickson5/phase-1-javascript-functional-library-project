@@ -109,3 +109,65 @@ function myLast(array, n = 1){
     }
     return returnArray;
 }
+
+function mySortBy(array, callback){
+   // mappedResults = [callBackResult: arrayItem]
+   let mappedResults = {}
+   let arrayToSort = []
+   let returnArray = [];
+   
+    myEach(array, item => {
+        mappedResults[callback(item)] = item;
+        arrayToSort.push(callback(item))
+    })
+
+    if(typeof arrayToSort[0] === "string"){
+        arrayToSort.sort();
+    } else {
+        arrayToSort.sort( (a, b) => a-b)
+    }
+    
+    console.log("once sorted results..." + arrayToSort)
+
+    myEach(arrayToSort, sortedKey => {
+        returnArray.push(mappedResults[sortedKey])
+    })
+   return returnArray;
+}
+
+//taking the L on this one
+function myFlatten(array, shallow = true, newArr=[]){
+    function recursiveFlatten(parentItem){
+        myEach(parentItem, childItem => {
+            if(Array.isArray(childItem)){
+                return(recursiveFlatten(childItem));
+            } else {
+                newArr.push(childItem)
+            }
+        })
+    }
+    if(Array.isArray(array)){
+        newArr = recursiveFlatten(array);
+        return newArr;
+    }
+}
+
+function myKeys(object){
+    let array = [];
+
+    for(const key in object){
+        array.push(key)
+    }
+
+    return array;
+}
+
+function myValues(object){
+    let array = [];
+
+    for(const key in object){
+        array.push(object[key]);
+    }
+
+    return array;
+}
