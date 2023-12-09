@@ -3,7 +3,7 @@ function convertIfNeccessary(collection){
 }
 
 function myEach(collection, callback) {
-    let convertedCollection = convertIfNeccessary(collection);
+    const convertedCollection = convertIfNeccessary(collection);
     
     let i = 0;
     while(i < convertedCollection.length){
@@ -15,7 +15,7 @@ function myEach(collection, callback) {
 }
 
 function myMap(collection, callback) {
-    let convertedCollection = convertIfNeccessary(collection);
+    const convertedCollection = convertIfNeccessary(collection);
 
     const modifiedCollection = [];
     let i = 0;
@@ -29,7 +29,7 @@ function myMap(collection, callback) {
 
 
 function myReduce(collection, callback, acc){
-    let convertedCollection = convertIfNeccessary(collection);
+    const convertedCollection = convertIfNeccessary(collection);
 
     let i = 0;
     if(acc === undefined){
@@ -46,5 +46,28 @@ function myReduce(collection, callback, acc){
 }
 
 function myFind(collection, predicate) {
+    const convertedCollection = convertIfNeccessary(collection);
+    let i = 0;
 
+    while(i < convertedCollection.length) {
+        if(predicate(convertedCollection[i])){
+            return convertedCollection[i]
+        }
+        i++;
+    }
+    return undefined;
+}
+
+function myFilter(collection, predicate) {
+    const convertedCollection = convertIfNeccessary(collection);
+    let returnArray = []
+    let i = 0;
+
+    while(i < convertedCollection.length) {
+        if(predicate(convertedCollection[i])){
+            returnArray.push(convertedCollection[i])
+        }
+        i++;
+    }
+    return returnArray;
 }
